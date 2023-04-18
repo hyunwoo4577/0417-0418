@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior-1</title>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        body,html{scroll-behavior: smooth;}
+        main section {height:100vh;}
+        main .s1 {background: url(./images/bg1.jpg)center no-repeat;}
+        main .s2 {background: url(./images/bg2.jpg)center no-repeat;}
+        main .s3 {background: url(./images/bg3.jpg)center no-repeat;}
+        main .s4 {background: url(./images/bg4.jpg)center no-repeat;}
+        .link {position: fixed; right:50px; top: 50%; transform: translate(-50%,-50%);}
+        .link a {display:flex; flex-flow:column nowrap;background: #000; width: 30px; height: 30px; border-radius: 50%; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <div class="link">    
+        <a href="#" class="a" title="인테리어 a형 보기"></a>
+        <a href="#" class="b" title="인테리어 b형 보기"></a>
+        <a href="#" class="c" title="인테리어 c형 보기"></a>
+        <a href="#" class="d" title="인테리어 d형 보기"></a>
+    </div>
+    <main>
+        <section class="s1"></section>
+        <section class="s2"></section>
+        <section class="s3"></section>
+        <section class="s4"></section>
+    </main>
+<script>
+    //link-a 첫번째 클릭했을 때 -> main-section 첫번째이동
+    const link = document.querySelectorAll('.link a')
+    const section = document.querySelectorAll('main > section')
+    console.log(link,section)
+    for(let i in section){
+        console.log(section[i].offsetTop)
+    }
+    link.forEach((obj,index)=>{
+        console.log(obj,index)
+        obj.addEventListener('click',(e)=>{
+            e.preventDefault()//href와 scroll이 충돌되니 preventDefault()
+            window.scrollTo(0, section[index].offsetTop)
+        })
+    })
+</script>
+</body>
+</html>

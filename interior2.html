@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interior-2</title>
+</head>
+<body>
+    <link rel="stylesheet" href="./styles/reset.css">
+    <style>
+        body,html{scroll-behavior: smooth;}
+        header {position: fixed;left: 0; top:0;width: 100%; }
+        header h1 {background:rgba(255,255,255,0.5); text-align:center; font-size: 3rem; line-height: 100px;} 
+        main section {height:100vh; background-size: cover;}
+        main .s1 {background: url(./images/bg1.jpg)center no-repeat;}
+        main .s2 {background: url(./images/bg2.jpg)center no-repeat;}
+        main .s3 {background: url(./images/bg3.jpg)center no-repeat;}
+        main .s4 {background: url(./images/bg4.jpg)center no-repeat;}
+        header .nav {background: #fff;text-align: center;}
+        header .nav a {display:inline-block; line-height:100px; color:#222; padding:0 20px;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interior view</h1>
+        <div class="nav">    
+            <a href="#" class="a" title="인테리어 a형 보기">A</a>
+            <a href="#" class="b" title="인테리어 b형 보기">B</a>
+            <a href="#" class="c" title="인테리어 c형 보기">C</a>
+            <a href="#" class="d" title="인테리어 d형 보기">D</a>
+        </div>
+    </header>
+    <main>
+        <section class="s1"></section>
+        <section class="s2"></section>
+        <section class="s3"></section>
+        <section class="s4"></section>
+    </main>
+    <script>
+        const header = document.querySelector ('header')
+        const nav = document.querySelectorAll('.nav a')
+        const section = document.querySelectorAll('main > section')
+        console.log(header,nav,section)
+        header.style.transition = 'all 0.3s' 
+        window.addEventListener('scroll',()=>{
+            if(window.pageYOffset >= section[1].offsetTop -200){
+                header.style.transform = 'translateY(-100px)'
+            }else{
+                header.style.transform = 'translateY(0)'
+            }
+            })
+        nav.forEach((target,index)=>{
+            console.log(target,index)
+            target.addEventListener('click',(e)=>{
+                e.preventDefault()//href와 scroll이 충돌되니 preventDefault()
+                window.scrollTo(0, section[index].offsetTop)
+            })
+        })
+    </script>
+</body>
+</html>
